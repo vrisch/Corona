@@ -23,7 +23,7 @@ public struct Bindings {
         case selectionChanged(Result)
         case valueChanged(Result)
         
-        func string(result: (String) -> Void) {
+        public func string(result: (String) -> Void) {
             switch self {
             case let .actionPerformed(.string(value)): result(value)
             case let .selectionChanged(.string(value)): result(value)
@@ -32,17 +32,19 @@ public struct Bindings {
             }
         }
     }
-    typealias Change = (Event) -> Void
+    public typealias Change = (Event) -> Void
 
-    mutating func bind(_ barButtonItem: UIBarButtonItem?, change: @escaping Change) {
+    public init() {}
+
+    public mutating func bind(_ barButtonItem: UIBarButtonItem?, change: @escaping Change) {
         tokens.append(TargetSelector(target: barButtonItem, change: change))
     }
     
-    mutating func bind(_ control: UIControl?, change: @escaping Change) {
+    public mutating func bind(_ control: UIControl?, change: @escaping Change) {
         tokens.append(TargetSelector(target: control, change: change))
     }
     
-    mutating func bind(_ textView: UITextView?, change: @escaping Change) {
+    public mutating func bind(_ textView: UITextView?, change: @escaping Change) {
         tokens.append(TextViewDelegate(target: textView, change: change))
     }
     
