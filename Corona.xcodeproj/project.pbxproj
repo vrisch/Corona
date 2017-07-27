@@ -8,15 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		52D6D9871BEFF229002C0205 /* Corona.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D97C1BEFF229002C0205 /* Corona.framework */; };
-		8933C7851EB5B820000D00A4 /* Corona.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7841EB5B820000D00A4 /* Corona.swift */; };
-		8933C7861EB5B820000D00A4 /* Corona.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7841EB5B820000D00A4 /* Corona.swift */; };
-		8933C7871EB5B820000D00A4 /* Corona.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7841EB5B820000D00A4 /* Corona.swift */; };
-		8933C7881EB5B820000D00A4 /* Corona.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7841EB5B820000D00A4 /* Corona.swift */; };
 		8933C78E1EB5B82C000D00A4 /* CoronaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* CoronaTests.swift */; };
 		8933C78F1EB5B82C000D00A4 /* CoronaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* CoronaTests.swift */; };
 		8933C7901EB5B82D000D00A4 /* CoronaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* CoronaTests.swift */; };
 		DD7502881C68FEDE006590AF /* Corona.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6DA0F1BF000BD002C0205 /* Corona.framework */; };
 		DD7502921C690C7A006590AF /* Corona.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D9F01BEFFFBE002C0205 /* Corona.framework */; };
+		F72BDCFD1F2A4B660064F60F /* TargetSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72BDCFC1F2A4B660064F60F /* TargetSelector.swift */; };
+		F72BDCFE1F2A4B8F0064F60F /* Corona.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7841EB5B820000D00A4 /* Corona.swift */; };
+		F72BDD001F2A4C090064F60F /* TextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72BDCFF1F2A4C090064F60F /* TextViewDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +54,8 @@
 		AD2FAA281CD0B6E100659CF4 /* CoronaTests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CoronaTests.plist; sourceTree = "<group>"; };
 		DD75027A1C68FCFC006590AF /* Corona-macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Corona-macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD75028D1C690C7A006590AF /* Corona-tvOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Corona-tvOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F72BDCFC1F2A4B660064F60F /* TargetSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetSelector.swift; sourceTree = "<group>"; };
+		F72BDCFF1F2A4C090064F60F /* TextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +151,8 @@
 			isa = PBXGroup;
 			children = (
 				8933C7841EB5B820000D00A4 /* Corona.swift */,
+				F72BDCFC1F2A4B660064F60F /* TargetSelector.swift */,
+				F72BDCFF1F2A4C090064F60F /* TextViewDelegate.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -347,11 +350,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0810;
-				ORGANIZATIONNAME = "Corona";
+				ORGANIZATIONNAME = Corona;
 				TargetAttributes = {
 					52D6D97B1BEFF229002C0205 = {
 						CreatedOnToolsVersion = 7.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0900;
 					};
 					52D6D9851BEFF229002C0205 = {
 						CreatedOnToolsVersion = 7.1;
@@ -459,7 +462,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8933C7851EB5B820000D00A4 /* Corona.swift in Sources */,
+				F72BDD001F2A4C090064F60F /* TextViewDelegate.swift in Sources */,
+				F72BDCFD1F2A4B660064F60F /* TargetSelector.swift in Sources */,
+				F72BDCFE1F2A4B8F0064F60F /* Corona.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,7 +480,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8933C7871EB5B820000D00A4 /* Corona.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,7 +487,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8933C7881EB5B820000D00A4 /* Corona.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,7 +494,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8933C7861EB5B820000D00A4 /* Corona.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -675,6 +677,7 @@
 		52D6D9941BEFF229002C0205 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Configs/CoronaTests.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -688,6 +691,7 @@
 		52D6D9951BEFF229002C0205 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Configs/CoronaTests.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
