@@ -22,12 +22,20 @@ public struct Bindings {
         case actionPerformed(Result)
         case selectionChanged(Result)
         case valueChanged(Result)
-        
+
         public func string(result: (String) -> Void) {
             switch self {
             case let .actionPerformed(.string(value)): result(value)
             case let .selectionChanged(.string(value)): result(value)
             case let .valueChanged(.string(value)): result(value)
+            default: break
+            }
+        }
+        public func attributedString(result: (NSAttributedString) -> Void) {
+            switch self {
+            case let .actionPerformed(.attributedString(value)): result(value)
+            case let .selectionChanged(.attributedString(value)): result(value)
+            case let .valueChanged(.attributedString(value)): result(value)
             default: break
             }
         }
