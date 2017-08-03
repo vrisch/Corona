@@ -22,10 +22,12 @@ internal extension Bindings {
             target?.delegate = nil
             print("DEINIT OF TextViewDelegate")
         }
-        
+
         @objc func textViewDidChange(_ textView: UITextView) {
-            if let text = textView.text, let attributedText = textView.attributedText {
+            if let text = textView.text {
                 change(.valueChanged(.string(text)))
+            }
+            if let attributedText = textView.attributedText {
                 change(.valueChanged(.attributedString(attributedText)))
             }
         }

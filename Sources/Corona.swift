@@ -23,21 +23,35 @@ public struct Bindings {
         case selectionChanged(Result)
         case valueChanged(Result)
 
-        public func string(result: (String) -> Void) {
+        @discardableResult
+        public func string(result: (String) -> Void) -> Event {
             switch self {
             case let .actionPerformed(.string(value)): result(value)
             case let .selectionChanged(.string(value)): result(value)
             case let .valueChanged(.string(value)): result(value)
             default: break
             }
+            return self
         }
-        public func attributedString(result: (NSAttributedString) -> Void) {
+        @discardableResult
+        public func attributedString(result: (NSAttributedString) -> Void) -> Event {
             switch self {
             case let .actionPerformed(.attributedString(value)): result(value)
             case let .selectionChanged(.attributedString(value)): result(value)
             case let .valueChanged(.attributedString(value)): result(value)
             default: break
             }
+            return self
+        }
+        @discardableResult
+        public func range(result: (NSRange) -> Void) -> Event {
+            switch self {
+            case let .actionPerformed(.range(value)): result(value)
+            case let .selectionChanged(.range(value)): result(value)
+            case let .valueChanged(.range(value)): result(value)
+            default: break
+            }
+            return self
         }
     }
     public typealias Change = (Event) -> Void
