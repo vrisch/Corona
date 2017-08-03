@@ -20,7 +20,6 @@ internal extension Bindings {
         
         deinit {
             target?.delegate = nil
-            print("DEINIT OF TextViewDelegate")
         }
 
         @objc func textViewDidChange(_ textView: UITextView) {

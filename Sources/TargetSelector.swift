@@ -36,7 +36,6 @@ internal extension Bindings {
             control?.removeTarget(self, action: #selector(touchUpInside(_:)), for: .touchUpInside)
             control?.removeTarget(self, action: #selector(valueChanged(_:)), for: .valueChanged)
             control?.removeTarget(self, action: #selector(editingChanged(_:)), for: .editingChanged)
-            print("DEINIT OF TargetSelector")
         }
         
         @objc func editingChanged(_ sender: Any) {
