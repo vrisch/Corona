@@ -41,27 +41,27 @@ internal extension Bindings {
         @objc func editingChanged(_ sender: Any) {
             if let textField = sender as? UITextField {
                 if let text = textField.text {
-                    change(.valueChanged(.string(text)))
+                    try! change(.valueChanged(.string(text)))
                 }
                 if let attributedText = textField.attributedText {
-                    change(.valueChanged(.attributedString(attributedText)))
+                    try! change(.valueChanged(.attributedString(attributedText)))
                 }
             }
         }
         
         @objc func touchUpInside(_ sender: Any) {
-            change(.actionPerformed(.empty))
+            try! change(.actionPerformed(.empty))
         }
         
         @objc func valueChanged(_ sender: Any) {
             if let segementedControl = sender as? UISegmentedControl {
                 let selectedSegmentIndex = segementedControl.selectedSegmentIndex
-                change(.valueChanged(.index(selectedSegmentIndex)))
+                try! change(.valueChanged(.index(selectedSegmentIndex)))
                 if let title = segementedControl.titleForSegment(at: selectedSegmentIndex) {
-                    change(.valueChanged(.string(title)))
+                    try! change(.valueChanged(.string(title)))
                 }
             }
-            change(.actionPerformed(.empty))
+            try! change(.actionPerformed(.empty))
         }
         
         private weak var barButtonItem: UIBarButtonItem?

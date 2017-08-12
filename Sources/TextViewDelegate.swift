@@ -24,15 +24,15 @@ internal extension Bindings {
 
         @objc func textViewDidChange(_ textView: UITextView) {
             if let text = textView.text {
-                change(.valueChanged(.string(text)))
+                try! change(.valueChanged(.string(text)))
             }
             if let attributedText = textView.attributedText {
-                change(.valueChanged(.attributedString(attributedText)))
+                try! change(.valueChanged(.attributedString(attributedText)))
             }
         }
         
         @objc func textViewDidChangeSelection(_ textView: UITextView) {
-            change(.selectionChanged(.range(textView.selectedRange)))
+            try! change(.selectionChanged(.range(textView.selectedRange)))
         }
         
         private weak var target: UITextView?

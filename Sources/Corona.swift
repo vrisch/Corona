@@ -24,37 +24,37 @@ public struct Bindings {
         case valueChanged(Result)
 
         @discardableResult
-        public func string(result: (String) -> Void) -> Event {
+        public func string(result: (String) throws -> Void) throws -> Event {
             switch self {
-            case let .actionPerformed(.string(value)): result(value)
-            case let .selectionChanged(.string(value)): result(value)
-            case let .valueChanged(.string(value)): result(value)
+            case let .actionPerformed(.string(value)): try result(value)
+            case let .selectionChanged(.string(value)): try result(value)
+            case let .valueChanged(.string(value)): try result(value)
             default: break
             }
             return self
         }
         @discardableResult
-        public func attributedString(result: (NSAttributedString) -> Void) -> Event {
+        public func attributedString(result: (NSAttributedString) throws -> Void) throws -> Event {
             switch self {
-            case let .actionPerformed(.attributedString(value)): result(value)
-            case let .selectionChanged(.attributedString(value)): result(value)
-            case let .valueChanged(.attributedString(value)): result(value)
+            case let .actionPerformed(.attributedString(value)): try result(value)
+            case let .selectionChanged(.attributedString(value)): try result(value)
+            case let .valueChanged(.attributedString(value)): try result(value)
             default: break
             }
             return self
         }
         @discardableResult
-        public func range(result: (NSRange) -> Void) -> Event {
+        public func range(result: (NSRange) throws -> Void) throws -> Event {
             switch self {
-            case let .actionPerformed(.range(value)): result(value)
-            case let .selectionChanged(.range(value)): result(value)
-            case let .valueChanged(.range(value)): result(value)
+            case let .actionPerformed(.range(value)): try result(value)
+            case let .selectionChanged(.range(value)): try result(value)
+            case let .valueChanged(.range(value)): try result(value)
             default: break
             }
             return self
         }
     }
-    public typealias Change = (Event) -> Void
+    public typealias Change = (Event) throws -> Void
 
     public init() {}
 
