@@ -24,6 +24,16 @@ public struct Bindings {
         case valueChanged(Result)
 
         @discardableResult
+        public func empty(result: () throws -> Void) throws -> Event {
+            switch self {
+            case .actionPerformed(.empty): try result()
+            case .selectionChanged(.empty): try result()
+            case .valueChanged(.empty): try result()
+            default: break
+            }
+            return self
+        }
+        @discardableResult
         public func string(result: (String) throws -> Void) throws -> Event {
             switch self {
             case let .actionPerformed(.string(value)): try result(value)
