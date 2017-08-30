@@ -16,6 +16,8 @@
 		F72BDCFD1F2A4B660064F60F /* TargetSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72BDCFC1F2A4B660064F60F /* TargetSelector.swift */; };
 		F72BDCFE1F2A4B8F0064F60F /* Corona.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7841EB5B820000D00A4 /* Corona.swift */; };
 		F72BDD001F2A4C090064F60F /* TextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72BDCFF1F2A4C090064F60F /* TextViewDelegate.swift */; };
+		F78F9AC71F5706B200B92F5C /* Orbit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78F9AC61F5706B200B92F5C /* Orbit.framework */; };
+		F78F9AC81F5706C400B92F5C /* Orbit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78F9AC61F5706B200B92F5C /* Orbit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,8 @@
 		DD75028D1C690C7A006590AF /* Corona-tvOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Corona-tvOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F72BDCFC1F2A4B660064F60F /* TargetSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetSelector.swift; sourceTree = "<group>"; };
 		F72BDCFF1F2A4C090064F60F /* TextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewDelegate.swift; sourceTree = "<group>"; };
+		F78F9AC31F57069700B92F5C /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		F78F9AC61F5706B200B92F5C /* Orbit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Orbit.framework; path = Carthage/Build/iOS/Orbit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F78F9AC71F5706B200B92F5C /* Orbit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F78F9AC81F5706C400B92F5C /* Orbit.framework in Frameworks */,
 				52D6D9871BEFF229002C0205 /* Corona.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -117,10 +123,12 @@
 		52D6D9721BEFF229002C0205 = {
 			isa = PBXGroup;
 			children = (
+				F78F9AC31F57069700B92F5C /* Cartfile */,
 				8933C7811EB5B7E0000D00A4 /* Sources */,
 				8933C7831EB5B7EB000D00A4 /* Tests */,
 				52D6D99C1BEFF38C002C0205 /* Configs */,
 				52D6D97D1BEFF229002C0205 /* Products */,
+				F78F9AC51F5706B100B92F5C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -182,6 +190,14 @@
 			name = Tests;
 			sourceTree = "<group>";
 		};
+		F78F9AC51F5706B100B92F5C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F78F9AC61F5706B200B92F5C /* Orbit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -241,6 +257,7 @@
 				52D6D9821BEFF229002C0205 /* Sources */,
 				52D6D9831BEFF229002C0205 /* Frameworks */,
 				52D6D9841BEFF229002C0205 /* Resources */,
+				F78F9AC91F5706C800B92F5C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -457,6 +474,23 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		F78F9AC91F5706C800B92F5C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Orbit.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		52D6D9771BEFF229002C0205 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -653,6 +687,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Configs/Corona.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -676,6 +714,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Configs/Corona.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -693,6 +735,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Configs/CoronaTests.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Corona.Corona-iOS-Tests";
@@ -707,6 +753,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Configs/CoronaTests.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Corona.Corona-iOS-Tests";
