@@ -67,15 +67,15 @@ public enum Event {
 
 public typealias Change = (Event) throws -> Void
 
-public func bind(_ barButtonItem: UIBarButtonItem?, change: @escaping Change) -> Disposable {
-    return Disposable(object: TargetSelector(target: barButtonItem, change: change))
+public func bind(_ barButtonItem: UIBarButtonItem?, change: @escaping Change) -> Disposables {
+    return Disposables(object: TargetSelector(target: barButtonItem, change: change))
 }
 
-public func bind(_ control: UIControl?, change: @escaping Change) -> Disposable {
-    return Disposable(object: TargetSelector(target: control, change: change))
+public func bind(_ control: UIControl?, change: @escaping Change) -> Disposables {
+    return Disposables(object: TargetSelector(target: control, change: change))
 }
 
-public func bind(_ textView: UITextView?, change: @escaping Change) -> Disposable {
-    return Disposable(object: TextViewDelegate(target: textView, change: change))
+public func bind(_ textView: UITextView?, change: @escaping Change) -> Disposables {
+    return Disposables(object: TextViewDelegate(target: textView, change: change))
 }
 
