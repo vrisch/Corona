@@ -1,13 +1,25 @@
 //
-//  TargetSelector.swift
+//  UIKitExtensions.swift
 //  Corona-iOS
 //
-//  Created by Magnus on 2017-07-27.
+//  Created by Magnus Nilsson on 2017-09-08.
 //  Copyright © 2017 Corona. All rights reserved.
 //
 
 import Orbit
 import UIKit
+
+public func bind(_ barButtonItem: UIBarButtonItem?, change: @escaping Change) -> Disposables {
+    return Disposables(object: TargetSelector(target: barButtonItem, change: change))
+}
+
+public func bind(_ control: UIControl?, change: @escaping Change) -> Disposables {
+    return Disposables(object: TargetSelector(target: control, change: change))
+}
+
+public func bind(_ textView: UITextView?, change: @escaping Change) -> Disposables {
+    return Disposables(object: TextViewDelegate(target: textView, change: change))
+}
 
 internal class TargetSelector: NSObject {
     init(target: UIControl?, change: @escaping Change) {
