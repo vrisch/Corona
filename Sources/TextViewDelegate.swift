@@ -6,7 +6,17 @@
 //  Copyright © 2017 Corona. All rights reserved.
 //
 
+import Orbit
 import UIKit
+
+public extension Binder {
+    
+    public static let textView: (UITextView) -> Binder = { textView in
+        return Binder { change in
+            return Disposables(object: TextViewDelegate(target: textView, change: change))
+        }
+    }
+}
 
 internal class TextViewDelegate: NSObject, UITextViewDelegate {
     

@@ -69,3 +69,40 @@ public enum Event {
 }
 
 public typealias Change = (Event) throws -> Void
+
+public struct Binder {
+
+    public init(binding: @escaping (@escaping Change) -> Disposables) {
+        self.binding = binding
+    }
+
+    public static func bind(_ binder: Binder, change: @escaping Change) -> Disposables {
+        return binder.binding(change)
+    }
+
+    private let binding: (@escaping Change) -> Disposables
+}
+
+public class TargetAction: NSObject {
+    public init(target: NSObject, change: @escaping Change, add: (TargetAction) -> Void, transform: @escaping (Change) throws -> Void, remove: @escaping (TargetAction) -> Void) {
+        self.target = target
+        self.change = change
+        self.transform = transform
+        self.remove = remove
+        super.init()
+        add(self)
+    }
+    
+    deinit {
+        remove(self)
+    }
+
+    @objc public func action(_ sender: Any) {
+        try! transform(change)
+    }
+
+    private weak var target: NSObject?
+    private let change: Change
+    private let transform: (Change) throws -> Void
+    private let remove: (TargetAction) -> Void
+}

@@ -22,11 +22,11 @@
 		F7D02AFE1F62DDA00017958D /* Corona.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7841EB5B820000D00A4 /* Corona.swift */; };
 		F7D02AFF1F62DDA10017958D /* Corona.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7841EB5B820000D00A4 /* Corona.swift */; };
 		F7D02B011F62DDFC0017958D /* Orbit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7D02B001F62DDFC0017958D /* Orbit.framework */; };
-		F7D02B051F62DE200017958D /* Orbit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7D02B041F62DE200017958D /* Orbit.framework */; };
 		F7D02B061F62DE300017958D /* Orbit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7D02B021F62DE0E0017958D /* Orbit.framework */; };
 		F7D02B091F62DE870017958D /* Orbit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7D02B021F62DE0E0017958D /* Orbit.framework */; };
 		F7D02B0A1F62DE960017958D /* Orbit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7D02B001F62DDFC0017958D /* Orbit.framework */; };
 		F7D02B0C1F62E0290017958D /* AppkitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D02B0B1F62E0290017958D /* AppkitExtensions.swift */; };
+		F7E4B2571F62FBC10041BE3B /* Orbit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7D02B041F62DE200017958D /* Orbit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,7 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7D02B051F62DE200017958D /* Orbit.framework in Frameworks */,
+				F7E4B2571F62FBC10041BE3B /* Orbit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -831,7 +831,6 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/tvOS",
 					"$(PROJECT_DIR)/Carthage/Build/watchOS",
 				);
 				INFOPLIST_FILE = Configs/Corona.plist;
@@ -857,7 +856,6 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/tvOS",
 					"$(PROJECT_DIR)/Carthage/Build/watchOS",
 				);
 				INFOPLIST_FILE = Configs/Corona.plist;

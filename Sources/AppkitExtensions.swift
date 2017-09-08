@@ -9,47 +9,25 @@
 import Orbit
 import Cocoa
 
-public func bind(_ toolbarItem: NSToolbarItem?, change: @escaping Change) -> Disposables {
-    return Disposables(object: TargetSelector(target: toolbarItem, change: change))
-}
+public extension Binder {
 
-public func bind(_ control: NSControl?, change: @escaping Change) -> Disposables {
-    return Disposables(object: TargetSelector(target: control, change: change))
-}
-
-internal class TargetSelector: NSObject {
-    init(target: NSControl?, change: @escaping Change) {
-        self.toolbarItem = nil
-        self.control = target
-        self.change = change
-        super.init()
-        
-        control?.target = self
-        control?.action = #selector(touchUpInside(_:))
+    public static let toolbarItem: (NSToolbarItem) -> Binder = { toolbarItem in
+        return Binder { change in
+            let targetAction = TargetAction(
+                target: toolbarItem,
+                change: change,
+                add: { targetAction in
+                    toolbarItem.target = targetAction
+                    toolbarItem.action = #selector(TargetAction.action(_:))
+            },
+                transform: { change in
+                    try change(.actionPerformed(.empty))
+            },
+                remove: { targetAction in
+                    toolbarItem.target = nil
+                    toolbarItem.action = nil
+            })
+            return Disposables(object: targetAction)
+        }
     }
-
-    init(target: NSToolbarItem?, change: @escaping Change) {
-        self.toolbarItem = target
-        self.control = nil
-        self.change = change
-        super.init()
-        
-        toolbarItem?.target = self
-        toolbarItem?.action = #selector(touchUpInside(_:))
-    }
-
-    deinit {
-        toolbarItem?.target = nil
-        toolbarItem?.action = nil
-        control?.target = nil
-        control?.action = nil
-    }
-
-    @objc func touchUpInside(_ sender: Any) {
-        try! change(.actionPerformed(.empty))
-    }
-
-    private weak var toolbarItem: NSToolbarItem?
-    private weak var control: NSControl?
-    private let change: Change
 }
