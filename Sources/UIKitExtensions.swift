@@ -31,8 +31,9 @@ public extension Binder {
         }
     }
     
-    public static let control: (UIControl) -> Binder = { control in
+    public static let control: (UIControl?) -> Binder = { control in
         return Binder { change in
+            guard let control = control else { return Disposables() }
             let targetAction = TargetAction(
                 target: control,
                 change: change,
@@ -49,8 +50,9 @@ public extension Binder {
         }
     }
     
-    public static let textField: (UITextField) -> Binder = { textField in
+    public static let textField: (UITextField?) -> Binder = { textField in
         return Binder { change in
+            guard let textField = textField else { return Disposables() }
             let targetAction = TargetAction(
                 target: textField,
                 change: change,
@@ -72,8 +74,9 @@ public extension Binder {
         }
     }
     
-    public static let segmentedControl: (UISegmentedControl) -> Binder = { segmentedControl in
+    public static let segmentedControl: (UISegmentedControl?) -> Binder = { segmentedControl in
         return Binder { change in
+            guard let segmentedControl = segmentedControl else { return Disposables() }
             let targetAction = TargetAction(
                 target: segmentedControl,
                 change: change,
