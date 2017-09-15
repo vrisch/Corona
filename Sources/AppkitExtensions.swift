@@ -31,7 +31,7 @@ public extension Binder {
         }
     }
 
-    public static let textView: (NSTextView) -> Binder = { textView in
+    public static let textView: (NSTextView?) -> Binder = { textView in
         return Binder { change in
             return Disposables(object: TextViewDelegate(target: textView, change: change))
         }
