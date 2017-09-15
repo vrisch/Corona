@@ -30,4 +30,42 @@ public extension Binder {
             return Disposables(object: targetAction)
         }
     }
+
+    public static let textView: (NSTextView) -> Binder = { textView in
+        return Binder { change in
+            return Disposables(object: TextViewDelegate(target: textView, change: change))
+        }
+    }
+}
+
+internal class TextViewDelegate: NSObject, NSTextViewDelegate {
+    
+    required init(target: NSTextView?, change: @escaping Change) {
+        self.target = target
+        self.change = change
+        super.init()
+        target?.delegate = self
+    }
+
+    deinit {
+        target?.delegate = nil
+    }
+
+    @objc func textDidChange(_ notification: Notification) {
+        if let textView = target {
+            try! change(.valueChanged(.string(textView.string)))
+        }
+        if let textView = target {
+            try! change(.valueChanged(.attributedString(textView.attributedString())))
+        }
+    }
+
+    @objc func textViewDidChangeSelection(_ notification: Notification) {
+        if let textView = target {
+            try! change(.selectionChanged(.range(textView.selectedRange)))
+        }
+    }
+
+    private weak var target: NSTextView?
+    private let change: Change
 }
