@@ -31,7 +31,28 @@ public extension Binder {
             return Disposables(object: targetAction)
         }
     }
-    
+
+    public static let menuItem: (NSMenuItem?) -> Binder = { menuItem in
+        return Binder { change in
+            guard let menuItem = menuItem else { return Disposables() }
+            let targetAction = TargetAction(
+                target: menuItem,
+                change: change,
+                add: { targetAction in
+                    menuItem.target = targetAction
+                    menuItem.action = #selector(TargetAction.action(_:))
+            },
+                transform: { change in
+                    try change(.actionPerformed(.empty))
+            },
+                remove: { targetAction in
+                    menuItem.target = nil
+                    menuItem.action = nil
+            })
+            return Disposables(object: targetAction)
+        }
+    }
+
     public static let textView: (NSTextView?) -> Binder = { textView in
         return Binder { change in
             return Disposables(object: TextViewDelegate(target: textView, change: change))
