@@ -26,11 +26,11 @@ internal class TextViewDelegate: NSObject, UITextViewDelegate {
         super.init()
         target?.delegate = self
     }
-    
+
     deinit {
         target?.delegate = nil
     }
-    
+
     @objc func textViewDidChange(_ textView: UITextView) {
         if let text = textView.text {
             try! change(.valueChanged(.string(text)))
@@ -39,11 +39,15 @@ internal class TextViewDelegate: NSObject, UITextViewDelegate {
             try! change(.valueChanged(.attributedString(attributedText)))
         }
     }
-    
+
     @objc func textViewDidChangeSelection(_ textView: UITextView) {
         try! change(.selectionChanged(.range(textView.selectedRange)))
     }
-    
+
+    @objc func textViewDidEndEditing(_ textView: UITextView) {
+        try! change(.actionPerformed(.empty))
+    }
+
     private weak var target: UITextView?
     private let change: Change
 }

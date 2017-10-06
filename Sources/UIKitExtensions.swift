@@ -52,25 +52,44 @@ public extension Binder {
     
     public static let textField: (UITextField?) -> Binder = { textField in
         return Binder { change in
-            guard let textField = textField else { return Disposables() }
-            let targetAction = TargetAction(
-                target: textField,
-                change: change,
-                add: { targetAction in
-                    textField.addTarget(targetAction, action: #selector(TargetAction.action(_:)), for: .editingChanged)
-            },
-                transform: { change in
-                    if let text = textField.text {
-                        try change(.valueChanged(.string(text)))
-                    }
-                    if let attributedText = textField.attributedText {
-                        try change(.valueChanged(.attributedString(attributedText)))
-                    }
-            },
-                remove: { targetAction in
-                    textField.removeTarget(targetAction, action: #selector(TargetAction.action(_:)), for: .editingChanged)
-            })
-            return Disposables(object: targetAction)
+            var disposables = Disposables()
+            guard let textField = textField else { return disposables }
+            do {
+                let targetAction = TargetAction(
+                    target: textField,
+                    change: change,
+                    add: { targetAction in
+                        textField.addTarget(targetAction, action: #selector(TargetAction.action(_:)), for: .editingChanged)
+                },
+                    transform: { change in
+                        if let text = textField.text {
+                            try change(.valueChanged(.string(text)))
+                        }
+                        if let attributedText = textField.attributedText {
+                            try change(.valueChanged(.attributedString(attributedText)))
+                        }
+                },
+                    remove: { targetAction in
+                        textField.removeTarget(targetAction, action: #selector(TargetAction.action(_:)), for: .editingChanged)
+                })
+                disposables += Disposables(object: targetAction)
+            }
+            do {
+                let targetAction = TargetAction(
+                    target: textField,
+                    change: change,
+                    add: { targetAction in
+                        textField.addTarget(targetAction, action: #selector(TargetAction.action(_:)), for: .editingDidEndOnExit)
+                },
+                    transform: { change in
+                        try change(.actionPerformed(.empty))
+                },
+                    remove: { targetAction in
+                        textField.removeTarget(targetAction, action: #selector(TargetAction.action(_:)), for: .editingDidEndOnExit)
+                })
+                disposables += Disposables(object: targetAction)
+            }
+            return disposables
         }
     }
     
@@ -97,4 +116,3 @@ public extension Binder {
         }
     }
 }
-
