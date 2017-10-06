@@ -26,6 +26,8 @@
 		F7D02B091F62DE870017958D /* Orbit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7D02B021F62DE0E0017958D /* Orbit.framework */; };
 		F7D02B0A1F62DE960017958D /* Orbit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7D02B001F62DDFC0017958D /* Orbit.framework */; };
 		F7D02B0C1F62E0290017958D /* AppkitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D02B0B1F62E0290017958D /* AppkitExtensions.swift */; };
+		F7D6A4CE1F879CFB00E59CE9 /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D02AFB1F62DD290017958D /* UIKitExtensions.swift */; };
+		F7D6A4CF1F879D1100E59CE9 /* TextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72BDCFF1F2A4C090064F60F /* TextViewDelegate.swift */; };
 		F7E4B2571F62FBC10041BE3B /* Orbit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7D02B041F62DE200017958D /* Orbit.framework */; };
 /* End PBXBuildFile section */
 
@@ -574,6 +576,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7D6A4CF1F879D1100E59CE9 /* TextViewDelegate.swift in Sources */,
+				F7D6A4CE1F879CFB00E59CE9 /* UIKitExtensions.swift in Sources */,
 				F7D02AFF1F62DDA10017958D /* Corona.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
