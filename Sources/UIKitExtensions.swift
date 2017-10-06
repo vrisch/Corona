@@ -33,20 +33,39 @@ public extension Binder {
     
     public static let control: (UIControl?) -> Binder = { control in
         return Binder { change in
-            guard let control = control else { return Disposables() }
-            let targetAction = TargetAction(
-                target: control,
-                change: change,
-                add: { targetAction in
-                    control.addTarget(targetAction, action: #selector(TargetAction.action(_:)), for: .touchUpInside)
-            },
-                transform: { change in
-                    try change(.actionPerformed(.empty))
-            },
-                remove: { targetAction in
-                    control.removeTarget(targetAction, action: #selector(TargetAction.action(_:)), for: .touchUpInside)
-            })
-            return Disposables(object: targetAction)
+            var disposables = Disposables()
+            guard let control = control else { return disposables }
+            do {
+                let targetAction = TargetAction(
+                    target: control,
+                    change: change,
+                    add: { targetAction in
+                        control.addTarget(targetAction, action: #selector(TargetAction.action(_:)), for: .touchUpInside)
+                },
+                    transform: { change in
+                        try change(.actionPerformed(.empty))
+                },
+                    remove: { targetAction in
+                        control.removeTarget(targetAction, action: #selector(TargetAction.action(_:)), for: .touchUpInside)
+                })
+                disposables += Disposables(object: targetAction)
+            }
+            do {
+                let targetAction = TargetAction(
+                    target: control,
+                    change: change,
+                    add: { targetAction in
+                        control.addTarget(targetAction, action: #selector(TargetAction.action(_:)), for: .primaryActionTriggered)
+                },
+                    transform: { change in
+                        try change(.actionPerformed(.empty))
+                },
+                    remove: { targetAction in
+                        control.removeTarget(targetAction, action: #selector(TargetAction.action(_:)), for: .primaryActionTriggered)
+                })
+                disposables += Disposables(object: targetAction)
+            }
+            return disposables
         }
     }
     
