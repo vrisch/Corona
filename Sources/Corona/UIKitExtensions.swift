@@ -7,6 +7,8 @@
 //
 
 import Orbit
+
+#if os(iOS)
 import UIKit
 
 public extension Binder {
@@ -135,3 +137,4 @@ public extension Binder {
         }
     }
 }
+#endif

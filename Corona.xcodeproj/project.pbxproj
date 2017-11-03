@@ -13,21 +13,40 @@
 		8933C7901EB5B82D000D00A4 /* CoronaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* CoronaTests.swift */; };
 		DD7502881C68FEDE006590AF /* Corona.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6DA0F1BF000BD002C0205 /* Corona.framework */; };
 		DD7502921C690C7A006590AF /* Corona.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D9F01BEFFFBE002C0205 /* Corona.framework */; };
-		F72BDCFE1F2A4B8F0064F60F /* Corona.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7841EB5B820000D00A4 /* Corona.swift */; };
-		F72BDD001F2A4C090064F60F /* TextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72BDCFF1F2A4C090064F60F /* TextViewDelegate.swift */; };
+		F70C7F1B1FAC6DB10000E4C3 /* TextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70C7F171FAC6DB00000E4C3 /* TextViewDelegate.swift */; };
+		F70C7F1C1FAC6DB10000E4C3 /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70C7F181FAC6DB10000E4C3 /* UIKitExtensions.swift */; };
+		F70C7F1D1FAC6DB10000E4C3 /* AppkitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70C7F191FAC6DB10000E4C3 /* AppkitExtensions.swift */; };
+		F70C7F1E1FAC6DB10000E4C3 /* Corona.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70C7F1A1FAC6DB10000E4C3 /* Corona.swift */; };
+		F70C7F1F1FAC6DB70000E4C3 /* AppkitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70C7F191FAC6DB10000E4C3 /* AppkitExtensions.swift */; };
+		F70C7F201FAC6DB70000E4C3 /* Corona.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70C7F1A1FAC6DB10000E4C3 /* Corona.swift */; };
+		F70C7F211FAC6DB70000E4C3 /* TextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70C7F171FAC6DB00000E4C3 /* TextViewDelegate.swift */; };
+		F70C7F221FAC6DB70000E4C3 /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70C7F181FAC6DB10000E4C3 /* UIKitExtensions.swift */; };
+		F70C7F231FAC6DB80000E4C3 /* AppkitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70C7F191FAC6DB10000E4C3 /* AppkitExtensions.swift */; };
+		F70C7F241FAC6DB80000E4C3 /* Corona.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70C7F1A1FAC6DB10000E4C3 /* Corona.swift */; };
+		F70C7F251FAC6DB80000E4C3 /* TextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70C7F171FAC6DB00000E4C3 /* TextViewDelegate.swift */; };
+		F70C7F261FAC6DB80000E4C3 /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70C7F181FAC6DB10000E4C3 /* UIKitExtensions.swift */; };
+		F70C7F271FAC6DB90000E4C3 /* AppkitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70C7F191FAC6DB10000E4C3 /* AppkitExtensions.swift */; };
+		F70C7F281FAC6DB90000E4C3 /* Corona.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70C7F1A1FAC6DB10000E4C3 /* Corona.swift */; };
+		F70C7F291FAC6DB90000E4C3 /* TextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70C7F171FAC6DB00000E4C3 /* TextViewDelegate.swift */; };
+		F70C7F2A1FAC6DB90000E4C3 /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70C7F181FAC6DB10000E4C3 /* UIKitExtensions.swift */; };
+		F70C7F2B1FAC6DBA0000E4C3 /* AppkitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70C7F191FAC6DB10000E4C3 /* AppkitExtensions.swift */; };
+		F70C7F2C1FAC6DBA0000E4C3 /* Corona.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70C7F1A1FAC6DB10000E4C3 /* Corona.swift */; };
+		F70C7F2D1FAC6DBA0000E4C3 /* TextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70C7F171FAC6DB00000E4C3 /* TextViewDelegate.swift */; };
+		F70C7F2E1FAC6DBA0000E4C3 /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70C7F181FAC6DB10000E4C3 /* UIKitExtensions.swift */; };
+		F70C7F2F1FAC6DBB0000E4C3 /* AppkitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70C7F191FAC6DB10000E4C3 /* AppkitExtensions.swift */; };
+		F70C7F301FAC6DBB0000E4C3 /* Corona.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70C7F1A1FAC6DB10000E4C3 /* Corona.swift */; };
+		F70C7F311FAC6DBB0000E4C3 /* TextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70C7F171FAC6DB00000E4C3 /* TextViewDelegate.swift */; };
+		F70C7F321FAC6DBB0000E4C3 /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70C7F181FAC6DB10000E4C3 /* UIKitExtensions.swift */; };
+		F70C7F331FAC6DBB0000E4C3 /* AppkitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70C7F191FAC6DB10000E4C3 /* AppkitExtensions.swift */; };
+		F70C7F341FAC6DBB0000E4C3 /* Corona.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70C7F1A1FAC6DB10000E4C3 /* Corona.swift */; };
+		F70C7F351FAC6DBB0000E4C3 /* TextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70C7F171FAC6DB00000E4C3 /* TextViewDelegate.swift */; };
+		F70C7F361FAC6DBB0000E4C3 /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70C7F181FAC6DB10000E4C3 /* UIKitExtensions.swift */; };
 		F78F9AC71F5706B200B92F5C /* Orbit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78F9AC61F5706B200B92F5C /* Orbit.framework */; };
 		F78F9AC81F5706C400B92F5C /* Orbit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78F9AC61F5706B200B92F5C /* Orbit.framework */; };
-		F7D02AFC1F62DD290017958D /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D02AFB1F62DD290017958D /* UIKitExtensions.swift */; };
-		F7D02AFD1F62DD9F0017958D /* Corona.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7841EB5B820000D00A4 /* Corona.swift */; };
-		F7D02AFE1F62DDA00017958D /* Corona.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7841EB5B820000D00A4 /* Corona.swift */; };
-		F7D02AFF1F62DDA10017958D /* Corona.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7841EB5B820000D00A4 /* Corona.swift */; };
 		F7D02B011F62DDFC0017958D /* Orbit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7D02B001F62DDFC0017958D /* Orbit.framework */; };
 		F7D02B061F62DE300017958D /* Orbit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7D02B021F62DE0E0017958D /* Orbit.framework */; };
 		F7D02B091F62DE870017958D /* Orbit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7D02B021F62DE0E0017958D /* Orbit.framework */; };
 		F7D02B0A1F62DE960017958D /* Orbit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7D02B001F62DDFC0017958D /* Orbit.framework */; };
-		F7D02B0C1F62E0290017958D /* AppkitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D02B0B1F62E0290017958D /* AppkitExtensions.swift */; };
-		F7D6A4CE1F879CFB00E59CE9 /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D02AFB1F62DD290017958D /* UIKitExtensions.swift */; };
-		F7D6A4CF1F879D1100E59CE9 /* TextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72BDCFF1F2A4C090064F60F /* TextViewDelegate.swift */; };
 		F7E4B2571F62FBC10041BE3B /* Orbit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7D02B041F62DE200017958D /* Orbit.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,20 +80,21 @@
 		52D6D9E21BEFFF6E002C0205 /* Corona.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Corona.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D6D9F01BEFFFBE002C0205 /* Corona.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Corona.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D6DA0F1BF000BD002C0205 /* Corona.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Corona.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8933C7841EB5B820000D00A4 /* Corona.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Corona.swift; sourceTree = "<group>"; };
 		8933C7891EB5B82A000D00A4 /* CoronaTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoronaTests.swift; sourceTree = "<group>"; };
 		AD2FAA261CD0B6D800659CF4 /* Corona.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Corona.plist; sourceTree = "<group>"; };
 		AD2FAA281CD0B6E100659CF4 /* CoronaTests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CoronaTests.plist; sourceTree = "<group>"; };
 		DD75027A1C68FCFC006590AF /* Corona-macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Corona-macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD75028D1C690C7A006590AF /* Corona-tvOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Corona-tvOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F72BDCFF1F2A4C090064F60F /* TextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewDelegate.swift; sourceTree = "<group>"; };
+		F70C7F151FAC6DA40000E4C3 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		F70C7F171FAC6DB00000E4C3 /* TextViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextViewDelegate.swift; path = Corona/TextViewDelegate.swift; sourceTree = "<group>"; };
+		F70C7F181FAC6DB10000E4C3 /* UIKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIKitExtensions.swift; path = Corona/UIKitExtensions.swift; sourceTree = "<group>"; };
+		F70C7F191FAC6DB10000E4C3 /* AppkitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppkitExtensions.swift; path = Corona/AppkitExtensions.swift; sourceTree = "<group>"; };
+		F70C7F1A1FAC6DB10000E4C3 /* Corona.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Corona.swift; path = Corona/Corona.swift; sourceTree = "<group>"; };
 		F78F9AC31F57069700B92F5C /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		F78F9AC61F5706B200B92F5C /* Orbit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Orbit.framework; path = Carthage/Build/iOS/Orbit.framework; sourceTree = "<group>"; };
-		F7D02AFB1F62DD290017958D /* UIKitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitExtensions.swift; sourceTree = "<group>"; };
 		F7D02B001F62DDFC0017958D /* Orbit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Orbit.framework; path = Carthage/Build/Mac/Orbit.framework; sourceTree = "<group>"; };
 		F7D02B021F62DE0E0017958D /* Orbit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Orbit.framework; path = Carthage/Build/tvOS/Orbit.framework; sourceTree = "<group>"; };
 		F7D02B041F62DE200017958D /* Orbit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Orbit.framework; path = Carthage/Build/watchOS/Orbit.framework; sourceTree = "<group>"; };
-		F7D02B0B1F62E0290017958D /* AppkitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppkitExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +163,7 @@
 		52D6D9721BEFF229002C0205 = {
 			isa = PBXGroup;
 			children = (
+				F70C7F151FAC6DA40000E4C3 /* Package.swift */,
 				F78F9AC31F57069700B92F5C /* Cartfile */,
 				8933C7811EB5B7E0000D00A4 /* Sources */,
 				8933C7831EB5B7EB000D00A4 /* Tests */,
@@ -178,10 +199,10 @@
 		8933C7811EB5B7E0000D00A4 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				8933C7841EB5B820000D00A4 /* Corona.swift */,
-				F7D02B0B1F62E0290017958D /* AppkitExtensions.swift */,
-				F72BDCFF1F2A4C090064F60F /* TextViewDelegate.swift */,
-				F7D02AFB1F62DD290017958D /* UIKitExtensions.swift */,
+				F70C7F191FAC6DB10000E4C3 /* AppkitExtensions.swift */,
+				F70C7F1A1FAC6DB10000E4C3 /* Corona.swift */,
+				F70C7F171FAC6DB00000E4C3 /* TextViewDelegate.swift */,
+				F70C7F181FAC6DB10000E4C3 /* UIKitExtensions.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -550,9 +571,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F72BDD001F2A4C090064F60F /* TextViewDelegate.swift in Sources */,
-				F7D02AFC1F62DD290017958D /* UIKitExtensions.swift in Sources */,
-				F72BDCFE1F2A4B8F0064F60F /* Corona.swift in Sources */,
+				F70C7F1D1FAC6DB10000E4C3 /* AppkitExtensions.swift in Sources */,
+				F70C7F1B1FAC6DB10000E4C3 /* TextViewDelegate.swift in Sources */,
+				F70C7F1C1FAC6DB10000E4C3 /* UIKitExtensions.swift in Sources */,
+				F70C7F1E1FAC6DB10000E4C3 /* Corona.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -560,7 +582,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F70C7F2D1FAC6DBA0000E4C3 /* TextViewDelegate.swift in Sources */,
+				F70C7F2B1FAC6DBA0000E4C3 /* AppkitExtensions.swift in Sources */,
+				F70C7F2C1FAC6DBA0000E4C3 /* Corona.swift in Sources */,
 				8933C7901EB5B82D000D00A4 /* CoronaTests.swift in Sources */,
+				F70C7F2E1FAC6DBA0000E4C3 /* UIKitExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,7 +594,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7D02AFE1F62DDA00017958D /* Corona.swift in Sources */,
+				F70C7F251FAC6DB80000E4C3 /* TextViewDelegate.swift in Sources */,
+				F70C7F231FAC6DB80000E4C3 /* AppkitExtensions.swift in Sources */,
+				F70C7F261FAC6DB80000E4C3 /* UIKitExtensions.swift in Sources */,
+				F70C7F241FAC6DB80000E4C3 /* Corona.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -576,9 +605,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7D6A4CF1F879D1100E59CE9 /* TextViewDelegate.swift in Sources */,
-				F7D6A4CE1F879CFB00E59CE9 /* UIKitExtensions.swift in Sources */,
-				F7D02AFF1F62DDA10017958D /* Corona.swift in Sources */,
+				F70C7F291FAC6DB90000E4C3 /* TextViewDelegate.swift in Sources */,
+				F70C7F271FAC6DB90000E4C3 /* AppkitExtensions.swift in Sources */,
+				F70C7F2A1FAC6DB90000E4C3 /* UIKitExtensions.swift in Sources */,
+				F70C7F281FAC6DB90000E4C3 /* Corona.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -586,8 +616,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7D02B0C1F62E0290017958D /* AppkitExtensions.swift in Sources */,
-				F7D02AFD1F62DD9F0017958D /* Corona.swift in Sources */,
+				F70C7F211FAC6DB70000E4C3 /* TextViewDelegate.swift in Sources */,
+				F70C7F1F1FAC6DB70000E4C3 /* AppkitExtensions.swift in Sources */,
+				F70C7F221FAC6DB70000E4C3 /* UIKitExtensions.swift in Sources */,
+				F70C7F201FAC6DB70000E4C3 /* Corona.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -595,7 +627,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F70C7F311FAC6DBB0000E4C3 /* TextViewDelegate.swift in Sources */,
+				F70C7F2F1FAC6DBB0000E4C3 /* AppkitExtensions.swift in Sources */,
+				F70C7F301FAC6DBB0000E4C3 /* Corona.swift in Sources */,
 				8933C78F1EB5B82C000D00A4 /* CoronaTests.swift in Sources */,
+				F70C7F321FAC6DBB0000E4C3 /* UIKitExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -603,7 +639,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F70C7F351FAC6DBB0000E4C3 /* TextViewDelegate.swift in Sources */,
+				F70C7F331FAC6DBB0000E4C3 /* AppkitExtensions.swift in Sources */,
+				F70C7F341FAC6DBB0000E4C3 /* Corona.swift in Sources */,
 				8933C78E1EB5B82C000D00A4 /* CoronaTests.swift in Sources */,
+				F70C7F361FAC6DBB0000E4C3 /* UIKitExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
