@@ -6,8 +6,6 @@
 //  Copyright © 2017 Corona. All rights reserved.
 //
 
-import Orbit
-
 #if os(iOS)
 import UIKit
 
@@ -29,13 +27,13 @@ public extension Binder {
                     barButtonItem.target = nil
                     barButtonItem.action = nil
             })
-            return Disposables(object: targetAction)
+            return [targetAction]
         }
     }
     
     public static let control: (UIControl?) -> Binder = { control in
         return Binder { change in
-            var disposables = Disposables()
+            var disposables: [Any] = []
             guard let control = control else { return disposables }
             do {
                 let targetAction = TargetAction(
@@ -50,7 +48,7 @@ public extension Binder {
                     remove: { targetAction in
                         control.removeTarget(targetAction, action: #selector(TargetAction.action(_:)), for: .touchUpInside)
                 })
-                disposables += Disposables(object: targetAction)
+                disposables.append(targetAction)
             }
             do {
                 let targetAction = TargetAction(
@@ -65,7 +63,7 @@ public extension Binder {
                     remove: { targetAction in
                         control.removeTarget(targetAction, action: #selector(TargetAction.action(_:)), for: .primaryActionTriggered)
                 })
-                disposables += Disposables(object: targetAction)
+                disposables.append(targetAction)
             }
             return disposables
         }
@@ -73,7 +71,7 @@ public extension Binder {
     
     public static let textField: (UITextField?) -> Binder = { textField in
         return Binder { change in
-            var disposables = Disposables()
+            var disposables: [Any] = []
             guard let textField = textField else { return disposables }
             do {
                 let targetAction = TargetAction(
@@ -93,7 +91,7 @@ public extension Binder {
                     remove: { targetAction in
                         textField.removeTarget(targetAction, action: #selector(TargetAction.action(_:)), for: .editingChanged)
                 })
-                disposables += Disposables(object: targetAction)
+                disposables.append(targetAction)
             }
             do {
                 let targetAction = TargetAction(
@@ -108,7 +106,7 @@ public extension Binder {
                     remove: { targetAction in
                         textField.removeTarget(targetAction, action: #selector(TargetAction.action(_:)), for: .editingDidEndOnExit)
                 })
-                disposables += Disposables(object: targetAction)
+                disposables.append(targetAction)
             }
             return disposables
         }
@@ -116,7 +114,7 @@ public extension Binder {
     
     public static let segmentedControl: (UISegmentedControl?) -> Binder = { segmentedControl in
         return Binder { change in
-            guard let segmentedControl = segmentedControl else { return Disposables() }
+            guard let segmentedControl = segmentedControl else { return [] }
             let targetAction = TargetAction(
                 target: segmentedControl,
                 change: change,
@@ -133,7 +131,7 @@ public extension Binder {
                 remove: { targetAction in
                     segmentedControl.removeTarget(targetAction, action: #selector(TargetAction.action(_:)), for: .valueChanged)
             })
-            return Disposables(object: targetAction)
+            return [targetAction]
         }
     }
 }

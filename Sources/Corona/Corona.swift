@@ -6,7 +6,6 @@
 //  Copyright © 2017 Corona. All rights reserved.
 //
 
-import Orbit
 import Foundation
 
 public enum Event {
@@ -72,15 +71,15 @@ public typealias Change = (Event) throws -> Void
 
 public struct Binder {
 
-    public init(binding: @escaping (@escaping Change) -> Disposables) {
+    public init(binding: @escaping (@escaping Change) -> [Any]) {
         self.binding = binding
     }
 
-    public static func bind(_ binder: Binder, change: @escaping Change) -> Disposables {
+    public static func bind(_ binder: Binder, change: @escaping Change) -> [Any] {
         return binder.binding(change)
     }
 
-    private let binding: (@escaping Change) -> Disposables
+    private let binding: (@escaping Change) -> [Any]
 }
 
 public class TargetAction: NSObject {

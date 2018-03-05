@@ -6,8 +6,6 @@
 //  Copyright © 2017 Corona. All rights reserved.
 //
 
-import Orbit
-
 #if os(OSX)
     import Cocoa
     
@@ -15,7 +13,7 @@ import Orbit
         
         public static let control: (NSControl?) -> Binder = { control in
             return Binder { change in
-                guard let control = control else { return Disposables() }
+                guard let control = control else { return [] }
                 let targetAction = TargetAction(
                     target: control,
                     change: change,
@@ -30,13 +28,13 @@ import Orbit
                         control.target = nil
                         control.action = nil
                 })
-                return Disposables(object: targetAction)
+                return [targetAction]
             }
         }
         
         public static let menuItem: (NSMenuItem?) -> Binder = { menuItem in
             return Binder { change in
-                guard let menuItem = menuItem else { return Disposables() }
+                guard let menuItem = menuItem else { return [] }
                 let targetAction = TargetAction(
                     target: menuItem,
                     change: change,
@@ -51,13 +49,13 @@ import Orbit
                         menuItem.target = nil
                         menuItem.action = nil
                 })
-                return Disposables(object: targetAction)
+                return [targetAction]
             }
         }
         
         public static let textView: (NSTextView?) -> Binder = { textView in
             return Binder { change in
-                return Disposables(object: TextViewDelegate(target: textView, change: change))
+                return [TextViewDelegate(target: textView, change: change)]
             }
         }
         
@@ -77,7 +75,7 @@ import Orbit
                         toolbarItem.target = nil
                         toolbarItem.action = nil
                 })
-                return Disposables(object: targetAction)
+                return [targetAction]
             }
         }
     }

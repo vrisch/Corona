@@ -6,8 +6,6 @@
 //  Copyright © 2017 Corona. All rights reserved.
 //
 
-import Orbit
-
 #if os(iOS) || os(tvOS)
     import UIKit
     
@@ -15,7 +13,7 @@ import Orbit
         
         public static let textView: (UITextView?) -> Binder = { textView in
             return Binder { change in
-                return Disposables(object: TextViewDelegate(target: textView, change: change))
+                return [TextViewDelegate(target: textView, change: change)]
             }
         }
     }

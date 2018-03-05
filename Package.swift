@@ -8,9 +8,6 @@ let package = Package(
             name: "Corona",
             targets: ["Corona"]),
         ],
-    dependencies: [
-        .package(url: "https://github.com/vrisch/Orbit.git", .branch("develop")),
-        ],
     targets: [
         .target(
             name: "Corona",
