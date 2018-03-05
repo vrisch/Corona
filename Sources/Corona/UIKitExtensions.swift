@@ -35,7 +35,7 @@ public extension Binder {
         return Binder { change in
             var disposables: [Any] = []
             guard let control = control else { return disposables }
-            do {
+/*            do {
                 let targetAction = TargetAction(
                     target: control,
                     change: change,
@@ -49,7 +49,7 @@ public extension Binder {
                         control.removeTarget(targetAction, action: #selector(TargetAction.action(_:)), for: .touchUpInside)
                 })
                 disposables.append(targetAction)
-            }
+            }*/
             do {
                 let targetAction = TargetAction(
                     target: control,
