@@ -23,6 +23,10 @@ public struct Event2 {
         case editingChanged
         case editingDidEndOnExit
         case primaryActionTriggered
+        case textViewDidChange
+        case textViewDidChangeSelection
+        case textViewDidEndEditing
+        case touchUpInside
         case valueChanged
     }
     
@@ -42,6 +46,26 @@ public struct Event2 {
 
     public func primaryActionTriggered(action: @escaping () throws -> Void) -> [Any] {
         return configure(.primaryActionTriggered, { _ in
+            try action()
+        })
+    }
+
+    public func textViewDidChange(action: @escaping (Result) throws -> Void) -> [Any] {
+        return configure(.textViewDidChange, action)
+    }
+
+    public func textViewDidChangeSelection(action: @escaping (Result) throws -> Void) -> [Any] {
+        return configure(.textViewDidChangeSelection, action)
+    }
+
+    public func textViewDidEndEditing(action: @escaping () throws -> Void) -> [Any] {
+        return configure(.textViewDidEndEditing, { _ in
+            try action()
+        })
+    }
+
+    public func touchUpInside(action: @escaping () throws -> Void) -> [Any] {
+        return configure(.touchUpInside, { _ in
             try action()
         })
     }
