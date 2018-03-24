@@ -34,12 +34,16 @@ public struct Event2 {
         return configure(.editingChanged, action)
     }
 
-    public func editingDidEndOnExit(action: @escaping (Result) throws -> Void) -> [Any] {
-        return configure(.editingDidEndOnExit, action)
+    public func editingDidEndOnExit(action: @escaping () throws -> Void) -> [Any] {
+        return configure(.editingDidEndOnExit, { _ in
+            try action()
+        })
     }
 
-    public func primaryActionTriggered(action: @escaping (Result) throws -> Void) -> [Any] {
-        return configure(.primaryActionTriggered, action)
+    public func primaryActionTriggered(action: @escaping () throws -> Void) -> [Any] {
+        return configure(.primaryActionTriggered, { _ in
+            try action()
+        })
     }
 
     public func valueChanged(action: @escaping (Result) throws -> Void) -> [Any] {
