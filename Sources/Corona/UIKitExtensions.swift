@@ -9,7 +9,7 @@
 #if os(iOS)
 import UIKit
 
-fileprivate extension Event2.Kind {
+fileprivate extension Event.Kind {
     var controlEvents: UIControlEvents? {
         switch self {
         case .editingChanged: return .editingChanged
@@ -24,13 +24,13 @@ fileprivate extension Event2.Kind {
     }
 }
 
-public extension Binder2 {
+public extension Binder {
     
-    public static let barButtonItem: (UIBarButtonItem) -> Binder2 = { barButtonItem in
-        return Binder2 {
-            return Event2 { kind, action in
+    public static let barButtonItem: (UIBarButtonItem) -> Binder = { barButtonItem in
+        return Binder {
+            return Event { kind, action in
                 return [
-                    TargetAction2(target: barButtonItem, perform: {
+                    TargetAction(target: barButtonItem, perform: {
                         try action(.empty)
                     }, add: { targetAction in
                         barButtonItem.target = targetAction
@@ -44,12 +44,12 @@ public extension Binder2 {
         }
     }
 
-    public static let control: (UIControl?) -> Binder2 = { control in
-        return Binder2 {
+    public static let control: (UIControl?) -> Binder = { control in
+        return Binder {
             guard let control = control else { return nil }
-            return Event2 { kind, action in
+            return Event { kind, action in
                 return [
-                    TargetAction2(target: control, perform: {
+                    TargetAction(target: control, perform: {
                         try action(.empty)
                     }, add: { targetAction in
                         control.addTarget(targetAction, action: #selector(TargetAction.action(_:)), for: kind.controlEvents!)
@@ -61,12 +61,12 @@ public extension Binder2 {
         }
     }
     
-    public static let textField: (UITextField?) -> Binder2 = { textField in
-        return Binder2 {
+    public static let textField: (UITextField?) -> Binder = { textField in
+        return Binder {
             guard let textField = textField else { return nil }
-            return Event2 { kind, action in
+            return Event { kind, action in
                 return [
-                    TargetAction2(target: textField, perform: {
+                    TargetAction(target: textField, perform: {
                         switch kind {
                         case .editingChanged:
                             if let text = textField.text {
@@ -90,12 +90,12 @@ public extension Binder2 {
         }
     }
 
-    public static let segmentedControl: (UISegmentedControl?) -> Binder2 = { segmentedControl in
-        return Binder2 {
+    public static let segmentedControl: (UISegmentedControl?) -> Binder = { segmentedControl in
+        return Binder {
             guard let segmentedControl = segmentedControl else { return nil }
-            return Event2 { kind, action in
+            return Event { kind, action in
                 return [
-                    TargetAction2(target: segmentedControl, perform: {
+                    TargetAction(target: segmentedControl, perform: {
                         let selectedSegmentIndex = segmentedControl.selectedSegmentIndex
                         try action(.index(selectedSegmentIndex))
                         if let title = segmentedControl.titleForSegment(at: selectedSegmentIndex) {
@@ -110,6 +110,65 @@ public extension Binder2 {
             }
         }
     }
+
+    public static let textView: (UITextView?) -> Binder = { textView in
+        return Binder {
+            return Event { kind, action in
+                return [
+                    TextViewDelegate(target: textView, perform: { kind2 in
+                        if kind == kind2 {
+                            switch kind {
+                            case .textViewDidChange:
+                                if let text = textView?.text {
+                                    try action(.string(text))
+                                }
+                                if let attributedText = textView?.attributedText {
+                                    try action(.attributedString(attributedText))
+                                }
+                            case .textViewDidChangeSelection:
+                                if let selectedRange = textView?.selectedRange {
+                                    try action(.range(selectedRange))
+                                }
+                            case .textViewDidEndEditing:
+                                try action(.empty)
+                            default:
+                                break
+                            }
+                        }
+                    })
+                ]
+            }
+        }
+    }
+}
+
+fileprivate class TextViewDelegate: NSObject, UITextViewDelegate {
+
+    required init(target: UITextView?, perform: @escaping (Event.Kind) throws -> Void) {
+        self.target = target
+        self.perform = perform
+        super.init()
+        target?.delegate = self
+    }
+    
+    deinit {
+        target?.delegate = nil
+    }
+    
+    @objc func textViewDidChange(_ textView: UITextView) {
+        try! perform(.textViewDidChange)
+    }
+    
+    @objc func textViewDidChangeSelection(_ textView: UITextView) {
+        try! perform(.textViewDidChangeSelection)
+    }
+    
+    @objc func textViewDidEndEditing(_ textView: UITextView) {
+        try! perform(.textViewDidEndEditing)
+    }
+    
+    private weak var target: UITextView?
+    private let perform: (Event.Kind) throws -> Void
 }
 
 #endif

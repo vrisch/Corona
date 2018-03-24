@@ -17,7 +17,7 @@ public enum Result {
     case range(NSRange)
 }
 
-public struct Event2 {
+public struct Event {
     
     public enum Kind {
         case editingChanged
@@ -77,21 +77,21 @@ public struct Event2 {
     private let configure: (Kind, @escaping (Result) throws -> Void) -> [Any]
 }
 
-public struct Binder2 {
+public struct Binder {
     
-    public static func bind(_ binder: Binder2) throws -> Event2 {
+    public static func bind(_ binder: Binder) throws -> Event {
         return binder.binding()!
     }
     
-    public init(binding: @escaping () -> Event2?) {
+    public init(binding: @escaping () -> Event?) {
         self.binding = binding
     }
     
-    private let binding: () -> Event2?
+    private let binding: () -> Event?
 }
 
-public class TargetAction2: NSObject {
-    public init(target: NSObject, perform: @escaping () throws -> Void, add: (TargetAction2) -> Void, remove: @escaping (TargetAction2) -> Void) {
+public class TargetAction: NSObject {
+    public init(target: NSObject, perform: @escaping () throws -> Void, add: (TargetAction) -> Void, remove: @escaping (TargetAction) -> Void) {
         self.target = target
         self.perform = perform
         self.remove = remove
@@ -109,94 +109,5 @@ public class TargetAction2: NSObject {
     
     private weak var target: NSObject?
     private let perform: () throws -> Void
-    private let remove: (TargetAction2) -> Void
-}
-
-public enum Event {
-    case actionPerformed(Result)
-    case selectionChanged(Result)
-    case valueChanged(Result)
-    
-    @discardableResult
-    public func empty(result: () throws -> Void) throws -> Event {
-        switch self {
-        case .actionPerformed(.empty): try result()
-        case .selectionChanged(.empty): try result()
-        case .valueChanged(.empty): try result()
-        default: break
-        }
-        return self
-    }
-
-    @discardableResult
-    public func string(result: (String) throws -> Void) throws -> Event {
-        switch self {
-        case let .actionPerformed(.string(value)): try result(value)
-        case let .selectionChanged(.string(value)): try result(value)
-        case let .valueChanged(.string(value)): try result(value)
-        default: break
-        }
-        return self
-    }
-
-    @discardableResult
-    public func attributedString(result: (NSAttributedString) throws -> Void) throws -> Event {
-        switch self {
-        case let .actionPerformed(.attributedString(value)): try result(value)
-        case let .selectionChanged(.attributedString(value)): try result(value)
-        case let .valueChanged(.attributedString(value)): try result(value)
-        default: break
-        }
-        return self
-    }
-
-    @discardableResult
-    public func range(result: (NSRange) throws -> Void) throws -> Event {
-        switch self {
-        case let .actionPerformed(.range(value)): try result(value)
-        case let .selectionChanged(.range(value)): try result(value)
-        case let .valueChanged(.range(value)): try result(value)
-        default: break
-        }
-        return self
-    }
-}
-
-public typealias Change = (Event) throws -> Void
-
-public struct Binder {
-
-    public init(binding: @escaping (@escaping Change) -> [Any]) {
-        self.binding = binding
-    }
-
-    public static func bind(_ binder: Binder, change: @escaping Change) -> [Any] {
-        return binder.binding(change)
-    }
-
-    private let binding: (@escaping Change) -> [Any]
-}
-
-public class TargetAction: NSObject {
-    public init(target: NSObject, change: @escaping Change, add: (TargetAction) -> Void, transform: @escaping (Change) throws -> Void, remove: @escaping (TargetAction) -> Void) {
-        self.target = target
-        self.change = change
-        self.transform = transform
-        self.remove = remove
-        super.init()
-        add(self)
-    }
-    
-    deinit {
-        remove(self)
-    }
-
-    @objc public func action(_ sender: Any) {
-        try! transform(change)
-    }
-
-    private weak var target: NSObject?
-    private let change: Change
-    private let transform: (Change) throws -> Void
     private let remove: (TargetAction) -> Void
 }

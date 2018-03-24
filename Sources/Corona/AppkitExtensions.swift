@@ -7,108 +7,117 @@
 //
 
 #if os(OSX)
-    import Cocoa
+import Cocoa
+
+public extension Binder {
     
-    public extension Binder {
-        
-        public static let control: (NSControl?) -> Binder = { control in
-            return Binder { change in
-                guard let control = control else { return [] }
-                let targetAction = TargetAction(
-                    target: control,
-                    change: change,
-                    add: { targetAction in
+    public static let control: (NSControl?) -> Binder = { control in
+        return Binder {
+            guard let control = control else { return nil }
+            return Event { kind, action in
+                return [
+                    TargetAction(target: control, perform: {
+                        try action(.empty)
+                    }, add: { targetAction in
                         control.target = targetAction
                         control.action = #selector(TargetAction.action(_:))
-                },
-                    transform: { change in
-                        try change(.actionPerformed(.empty))
-                },
-                    remove: { targetAction in
+                    }, remove: { targetAction in
                         control.target = nil
                         control.action = nil
-                })
-                return [targetAction]
-            }
-        }
-        
-        public static let menuItem: (NSMenuItem?) -> Binder = { menuItem in
-            return Binder { change in
-                guard let menuItem = menuItem else { return [] }
-                let targetAction = TargetAction(
-                    target: menuItem,
-                    change: change,
-                    add: { targetAction in
-                        menuItem.target = targetAction
-                        menuItem.action = #selector(TargetAction.action(_:))
-                },
-                    transform: { change in
-                        try change(.actionPerformed(.empty))
-                },
-                    remove: { targetAction in
-                        menuItem.target = nil
-                        menuItem.action = nil
-                })
-                return [targetAction]
-            }
-        }
-        
-        public static let textView: (NSTextView?) -> Binder = { textView in
-            return Binder { change in
-                return [TextViewDelegate(target: textView, change: change)]
-            }
-        }
-        
-        public static let toolbarItem: (NSToolbarItem) -> Binder = { toolbarItem in
-            return Binder { change in
-                let targetAction = TargetAction(
-                    target: toolbarItem,
-                    change: change,
-                    add: { targetAction in
-                        toolbarItem.target = targetAction
-                        toolbarItem.action = #selector(TargetAction.action(_:))
-                },
-                    transform: { change in
-                        try change(.actionPerformed(.empty))
-                },
-                    remove: { targetAction in
-                        toolbarItem.target = nil
-                        toolbarItem.action = nil
-                })
-                return [targetAction]
+                    })
+                ]
             }
         }
     }
     
-    internal class TextViewDelegate: NSObject, NSTextViewDelegate {
-        
-        required init(target: NSTextView?, change: @escaping Change) {
-            self.target = target
-            self.change = change
-            super.init()
-            target?.delegate = self
-        }
-        
-        deinit {
-            target?.delegate = nil
-        }
-        
-        @objc func textDidChange(_ notification: Notification) {
-            if let textView = target {
-                try! change(.valueChanged(.string(textView.string)))
-            }
-            if let textView = target {
-                try! change(.valueChanged(.attributedString(textView.attributedString())))
+    public static let menuItem: (NSMenuItem?) -> Binder = { menuItem in
+        return Binder {
+            guard let menuItem = menuItem else { return nil }
+            return Event { kind, action in
+                return [
+                    TargetAction(target: menuItem, perform: {
+                        try action(.empty)
+                    }, add: { targetAction in
+                        menuItem.target = targetAction
+                        menuItem.action = #selector(TargetAction.action(_:))
+                    }, remove: { targetAction in
+                        menuItem.target = nil
+                        menuItem.action = nil
+                    })
+                ]
             }
         }
-        
-        @objc func textViewDidChangeSelection(_ notification: Notification) {
-            if let textView = target {
-                try! change(.selectionChanged(.range(textView.selectedRange)))
-            }
-        }
-        
-        private weak var target: NSTextView?
-        private let change: Change
     }
+    
+    public static let textView: (NSTextView?) -> Binder = { textView in
+        return Binder {
+            return Event { kind, action in
+                return [
+                    TextViewDelegate(target: textView, perform: { kind2 in
+                        if kind == kind2 {
+                            switch kind {
+                            case .textViewDidChange:
+                                if let string = textView?.string {
+                                    try action(.string(string))
+                                }
+                                if let attributedString = textView?.attributedString() {
+                                    try action(.attributedString(attributedString))
+                                }
+                            case .textViewDidChangeSelection:
+                                if let selectedRange = textView?.selectedRange {
+                                    try action(.range(selectedRange))
+                                }
+                            default:
+                                break
+                            }
+                        }
+                    })
+                ]
+            }
+        }
+    }
+    
+    public static let toolbarItem: (NSToolbarItem) -> Binder = { toolbarItem in
+        return Binder {
+            return Event { kind, action in
+                return [
+                    TargetAction(target: toolbarItem, perform: {
+                        try action(.empty)
+                    }, add: { targetAction in
+                        toolbarItem.target = targetAction
+                        toolbarItem.action = #selector(TargetAction.action(_:))
+                    }, remove: { targetAction in
+                        toolbarItem.target = nil
+                        toolbarItem.action = nil
+                    })
+                ]
+            }
+        }
+    }
+}
+
+internal class TextViewDelegate: NSObject, NSTextViewDelegate {
+    
+    required init(target: NSTextView?, perform: @escaping (Event.Kind) throws -> Void) {
+        self.target = target
+        self.perform = perform
+        super.init()
+        target?.delegate = self
+    }
+    
+    deinit {
+        target?.delegate = nil
+    }
+    
+    @objc func textDidChange(_ notification: Notification) {
+        try! perform(.textViewDidChange)
+    }
+    
+    @objc func textViewDidChangeSelection(_ notification: Notification) {
+        try! perform(.textViewDidChangeSelection)
+    }
+
+    private weak var target: NSTextView?
+    private let perform: (Event.Kind) throws -> Void
+}
 #endif
