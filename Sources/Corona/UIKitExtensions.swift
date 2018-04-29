@@ -43,8 +43,8 @@ public extension UIBarButtonItem {
     }
 }
 
-public extension UIControl {
-    
+public extension UIButton {
+
     public func bind() throws -> Event {
         return Event { kind, action in
             return [
@@ -60,85 +60,81 @@ public extension UIControl {
     }
 }
 
-public extension Binder {
+public extension UITextField {
     
-    public static let textField: (UITextField?) -> Binder = { textField in
-        return Binder {
-            guard let textField = textField else { return nil }
-            return Event { kind, action in
-                return [
-                    TargetAction(target: textField, perform: {
+    public func bind() throws -> Event {
+        return Event { kind, action in
+            return [
+                TargetAction(target: self, perform: {
+                    switch kind {
+                    case .editingChanged:
+                        if let text = self.text {
+                            try action(.string(text))
+                        }
+                        if let attributedText = self.attributedText {
+                            try action(.attributedString(attributedText))
+                        }
+                    case .editingDidEndOnExit:
+                        try action(.empty)
+                    default:
+                        break
+                    }
+                }, add: { targetAction in
+                    self.addTarget(targetAction, action: #selector(TargetAction.action(_:)), for: kind.controlEvents!)
+                }, remove: { targetAction in
+                    self.removeTarget(targetAction, action: #selector(TargetAction.action(_:)), for: kind.controlEvents!)
+                })
+            ]
+        }
+    }
+}
+
+public extension UISegmentedControl {
+    
+    public func bind() throws -> Event {
+        return Event { kind, action in
+            return [
+                TargetAction(target: self, perform: {
+                    let selectedSegmentIndex = self.selectedSegmentIndex
+                    try action(.index(selectedSegmentIndex))
+                    if let title = self.titleForSegment(at: selectedSegmentIndex) {
+                        try action(.string(title))
+                    }
+                }, add: { targetAction in
+                    self.addTarget(targetAction, action: #selector(TargetAction.action(_:)), for: kind.controlEvents!)
+                }, remove: { targetAction in
+                    self.removeTarget(targetAction, action: #selector(TargetAction.action(_:)), for: kind.controlEvents!)
+                })
+            ]
+        }
+    }
+}
+
+public extension UITextView {
+    
+    public func bind() throws -> Event {
+        return Event { kind, action in
+            return [
+                TextViewDelegate(target: self, perform: { kind2 in
+                    if kind == kind2 {
                         switch kind {
-                        case .editingChanged:
-                            if let text = textField.text {
+                        case .textViewDidChange:
+                            if let text = self.text {
                                 try action(.string(text))
                             }
-                            if let attributedText = textField.attributedText {
+                            if let attributedText = self.attributedText {
                                 try action(.attributedString(attributedText))
                             }
-                        case .editingDidEndOnExit:
+                        case .textViewDidChangeSelection:
+                            try action(.range(self.selectedRange))
+                        case .textViewDidEndEditing:
                             try action(.empty)
                         default:
                             break
                         }
-                    }, add: { targetAction in
-                        textField.addTarget(targetAction, action: #selector(TargetAction.action(_:)), for: kind.controlEvents!)
-                    }, remove: { targetAction in
-                        textField.removeTarget(targetAction, action: #selector(TargetAction.action(_:)), for: kind.controlEvents!)
-                    })
-                ]
-            }
-        }
-    }
-
-    public static let segmentedControl: (UISegmentedControl?) -> Binder = { segmentedControl in
-        return Binder {
-            guard let segmentedControl = segmentedControl else { return nil }
-            return Event { kind, action in
-                return [
-                    TargetAction(target: segmentedControl, perform: {
-                        let selectedSegmentIndex = segmentedControl.selectedSegmentIndex
-                        try action(.index(selectedSegmentIndex))
-                        if let title = segmentedControl.titleForSegment(at: selectedSegmentIndex) {
-                            try action(.string(title))
-                        }
-                    }, add: { targetAction in
-                        segmentedControl.addTarget(targetAction, action: #selector(TargetAction.action(_:)), for: kind.controlEvents!)
-                    }, remove: { targetAction in
-                        segmentedControl.removeTarget(targetAction, action: #selector(TargetAction.action(_:)), for: kind.controlEvents!)
-                    })
-                ]
-            }
-        }
-    }
-
-    public static let textView: (UITextView?) -> Binder = { textView in
-        return Binder {
-            return Event { kind, action in
-                return [
-                    TextViewDelegate(target: textView, perform: { kind2 in
-                        if kind == kind2 {
-                            switch kind {
-                            case .textViewDidChange:
-                                if let text = textView?.text {
-                                    try action(.string(text))
-                                }
-                                if let attributedText = textView?.attributedText {
-                                    try action(.attributedString(attributedText))
-                                }
-                            case .textViewDidChangeSelection:
-                                if let selectedRange = textView?.selectedRange {
-                                    try action(.range(selectedRange))
-                                }
-                            case .textViewDidEndEditing:
-                                try action(.empty)
-                            default:
-                                break
-                            }
-                        }
-                    })
-                ]
-            }
+                    }
+                })
+            ]
         }
     }
 }
