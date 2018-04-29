@@ -25,10 +25,13 @@ class CoronaTests: XCTestCase {
         var test = 0
         var disposables: [Any] = []
         let button = UIButton()
-        disposables += try! Binder2.bind(.control(button)).primaryActionTriggered { _ in
+        disposables += try! button.plume().primaryActionTriggered {
             test = 1
         }
-        disposables += try! Binder2.bind(.control(button)).valueChanged { _ in
+        disposables += try! Binder.bind(.control(button)).primaryActionTriggered {
+            test = 1
+        }
+        disposables += try! Binder.bind(.control(button)).valueChanged { _ in
             test = 2
         }
         button.sendActions(for: .touchUpInside)

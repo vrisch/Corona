@@ -24,42 +24,43 @@ fileprivate extension Event.Kind {
     }
 }
 
-public extension Binder {
+public extension UIBarButtonItem {
     
-    public static let barButtonItem: (UIBarButtonItem) -> Binder = { barButtonItem in
-        return Binder {
-            return Event { kind, action in
-                return [
-                    TargetAction(target: barButtonItem, perform: {
-                        try action(.empty)
-                    }, add: { targetAction in
-                        barButtonItem.target = targetAction
-                        barButtonItem.action = #selector(TargetAction.action(_:))
-                    }, remove: { targetAction in
-                        barButtonItem.target = nil
-                        barButtonItem.action = nil
-                    })
-                ]
-            }
+    public func bind() throws -> Event {
+        return Event { kind, action in
+            return [
+                TargetAction(target: self, perform: {
+                    try action(.empty)
+                }, add: { targetAction in
+                    self.target = targetAction
+                    self.action = #selector(TargetAction.action(_:))
+                }, remove: { targetAction in
+                    self.target = nil
+                    self.action = nil
+                })
+            ]
         }
     }
+}
 
-    public static let control: (UIControl?) -> Binder = { control in
-        return Binder {
-            guard let control = control else { return nil }
-            return Event { kind, action in
-                return [
-                    TargetAction(target: control, perform: {
-                        try action(.empty)
-                    }, add: { targetAction in
-                        control.addTarget(targetAction, action: #selector(TargetAction.action(_:)), for: kind.controlEvents!)
-                    }, remove: { targetAction in
-                        control.removeTarget(targetAction, action: #selector(TargetAction.action(_:)), for: kind.controlEvents!)
-                    })
-                ]
-            }
+public extension UIControl {
+    
+    public func bind() throws -> Event {
+        return Event { kind, action in
+            return [
+                TargetAction(target: self, perform: {
+                    try action(.empty)
+                }, add: { targetAction in
+                    self.addTarget(targetAction, action: #selector(TargetAction.action(_:)), for: kind.controlEvents!)
+                }, remove: { targetAction in
+                    self.removeTarget(targetAction, action: #selector(TargetAction.action(_:)), for: kind.controlEvents!)
+                })
+            ]
         }
     }
+}
+
+public extension Binder {
     
     public static let textField: (UITextField?) -> Binder = { textField in
         return Binder {
