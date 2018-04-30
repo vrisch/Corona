@@ -9,89 +9,82 @@
 #if os(OSX)
 import Cocoa
 
-public extension Binder {
+public extension NSControl {
     
-    public static let control: (NSControl?) -> Binder = { control in
-        return Binder {
-            guard let control = control else { return nil }
-            return Event { kind, action in
-                return [
-                    TargetAction(target: control, perform: {
-                        try action(.empty)
-                    }, add: { targetAction in
-                        control.target = targetAction
-                        control.action = #selector(TargetAction.action(_:))
-                    }, remove: { targetAction in
-                        control.target = nil
-                        control.action = nil
-                    })
-                ]
-            }
+    public func bind() -> Event {
+        return Event { kind, action in
+            return [
+                TargetAction(target: self, perform: {
+                    try action(.empty)
+                }, add: { targetAction in
+                    self.target = targetAction
+                    self.action = #selector(TargetAction.action(_:))
+                }, remove: { targetAction in
+                    self.target = nil
+                    self.action = nil
+                })
+            ]
         }
     }
+}
+
+public extension NSMenuItem {
     
-    public static let menuItem: (NSMenuItem?) -> Binder = { menuItem in
-        return Binder {
-            guard let menuItem = menuItem else { return nil }
-            return Event { kind, action in
-                return [
-                    TargetAction(target: menuItem, perform: {
-                        try action(.empty)
-                    }, add: { targetAction in
-                        menuItem.target = targetAction
-                        menuItem.action = #selector(TargetAction.action(_:))
-                    }, remove: { targetAction in
-                        menuItem.target = nil
-                        menuItem.action = nil
-                    })
-                ]
-            }
+    public func bind() -> Event {
+        return Event { kind, action in
+            return [
+                TargetAction(target: self, perform: {
+                    try action(.empty)
+                }, add: { targetAction in
+                    self.target = targetAction
+                    self.action = #selector(TargetAction.action(_:))
+                }, remove: { targetAction in
+                    self.target = nil
+                    self.action = nil
+                })
+            ]
         }
     }
+}
+
+public extension NSTextView {
     
-    public static let textView: (NSTextView?) -> Binder = { textView in
-        return Binder {
-            return Event { kind, action in
-                return [
-                    TextViewDelegate(target: textView, perform: { kind2 in
-                        if kind == kind2 {
-                            switch kind {
-                            case .textViewDidChange:
-                                if let string = textView?.string {
-                                    try action(.string(string))
-                                }
-                                if let attributedString = textView?.attributedString() {
-                                    try action(.attributedString(attributedString))
-                                }
-                            case .textViewDidChangeSelection:
-                                if let selectedRange = textView?.selectedRange {
-                                    try action(.range(selectedRange))
-                                }
-                            default:
-                                break
-                            }
+    public func bind() -> Event {
+        return Event { kind, action in
+            return [
+                TextViewDelegate(target: self, perform: { kind2 in
+                    if kind == kind2 {
+                        switch kind {
+                        case .textViewDidChange:
+                            try action(.string(self.string))
+                            try action(.attributedString(self.attributedString()))
+                        case .textViewDidChangeSelection:
+                            try action(.range(self.selectedRange))
+                        default:
+                            break
                         }
-                    })
-                ]
-            }
+                    }
+                })
+            ]
         }
     }
+}
+
+public extension NSToolbarItem {
     
-    public static let toolbarItem: (NSToolbarItem) -> Binder = { toolbarItem in
-        return Binder {
-            return Event { kind, action in
-                return [
-                    TargetAction(target: toolbarItem, perform: {
-                        try action(.empty)
-                    }, add: { targetAction in
-                        toolbarItem.target = targetAction
-                        toolbarItem.action = #selector(TargetAction.action(_:))
-                    }, remove: { targetAction in
-                        toolbarItem.target = nil
-                        toolbarItem.action = nil
-                    })
-                ]
-            }
+    public func bind() -> Event {
+        return Event { kind, action in
+            return [
+                TargetAction(target: self, perform: {
+                    try action(.empty)
+                }, add: { targetAction in
+                    self.target = targetAction
+                    self.action = #selector(TargetAction.action(_:))
+                }, remove: { targetAction in
+                    self.target = nil
+                    self.action = nil
+                })
+            ]
         }
     }
 }

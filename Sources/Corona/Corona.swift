@@ -76,16 +76,3 @@ public struct Event {
     
     private let configure: (Kind, @escaping (Result) throws -> Void) -> [Any]
 }
-
-public struct Binder {
-    
-    public static func bind(_ binder: Binder) throws -> Event {
-        return binder.binding()!
-    }
-    
-    public init(binding: @escaping () -> Event?) {
-        self.binding = binding
-    }
-    
-    private let binding: () -> Event?
-}

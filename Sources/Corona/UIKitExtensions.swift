@@ -26,7 +26,7 @@ fileprivate extension Event.Kind {
 
 public extension UIBarButtonItem {
     
-    public func bind() throws -> Event {
+    public func bind() -> Event {
         return Event { kind, action in
             return [
                 TargetAction(target: self, perform: {
@@ -45,7 +45,7 @@ public extension UIBarButtonItem {
 
 public extension UIButton {
 
-    public func bind() throws -> Event {
+    public func bind() -> Event {
         return Event { kind, action in
             return [
                 TargetAction(target: self, perform: {
@@ -62,7 +62,7 @@ public extension UIButton {
 
 public extension UITextField {
     
-    public func bind() throws -> Event {
+    public func bind() -> Event {
         return Event { kind, action in
             return [
                 TargetAction(target: self, perform: {
@@ -91,7 +91,7 @@ public extension UITextField {
 
 public extension UISegmentedControl {
     
-    public func bind() throws -> Event {
+    public func bind() -> Event {
         return Event { kind, action in
             return [
                 TargetAction(target: self, perform: {
@@ -112,7 +112,7 @@ public extension UISegmentedControl {
 
 public extension UITextView {
     
-    public func bind() throws -> Event {
+    public func bind() -> Event {
         return Event { kind, action in
             return [
                 TextViewDelegate(target: self, perform: { kind2 in
