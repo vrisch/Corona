@@ -6,7 +6,7 @@
 //  Copyright © 2017 Corona. All rights reserved.
 //
 
-#if os(OSX)
+#if canImport(Cocoa)
 import Cocoa
 
 public extension NSControl {
@@ -109,7 +109,7 @@ internal class TextViewDelegate: NSObject, NSTextViewDelegate {
     @objc func textViewDidChangeSelection(_ notification: Notification) {
         try! perform(.textViewDidChangeSelection)
     }
-
+    
     private weak var target: NSTextView?
     private let perform: (Event.Kind) throws -> Void
 }

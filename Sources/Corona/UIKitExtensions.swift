@@ -6,7 +6,7 @@
 //  Copyright © 2017 Corona. All rights reserved.
 //
 
-#if os(iOS)
+#if canImport(UIKit)
 import UIKit
 
 fileprivate extension Event.Kind {
@@ -44,7 +44,7 @@ public extension UIBarButtonItem {
 }
 
 public extension UIButton {
-
+    
     public func bind() -> Event {
         return Event { kind, action in
             return [
@@ -140,7 +140,7 @@ public extension UITextView {
 }
 
 fileprivate class TextViewDelegate: NSObject, UITextViewDelegate {
-
+    
     required init(target: UITextView?, perform: @escaping (Event.Kind) throws -> Void) {
         self.target = target
         self.perform = perform
@@ -167,5 +167,4 @@ fileprivate class TextViewDelegate: NSObject, UITextViewDelegate {
     private weak var target: UITextView?
     private let perform: (Event.Kind) throws -> Void
 }
-
 #endif
