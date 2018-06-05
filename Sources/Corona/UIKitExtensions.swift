@@ -45,8 +45,8 @@ public extension UIBarButtonItem {
 
 public extension UIButton {
     
-    public func bind() -> Event {
-        return Event { kind, action in
+    public func bind() -> Corona.Event {
+        return Corona.Event { kind, action in
             return [
                 TargetAction(target: self, perform: {
                     try action(.empty)
@@ -62,8 +62,8 @@ public extension UIButton {
 
 public extension UITextField {
     
-    public func bind() -> Event {
-        return Event { kind, action in
+    public func bind() -> Corona.Event {
+        return Corona.Event { kind, action in
             return [
                 TargetAction(target: self, perform: {
                     switch kind {
@@ -91,8 +91,8 @@ public extension UITextField {
 
 public extension UISegmentedControl {
     
-    public func bind() -> Event {
-        return Event { kind, action in
+    public func bind() -> Corona.Event {
+        return Corona.Event { kind, action in
             return [
                 TargetAction(target: self, perform: {
                     let selectedSegmentIndex = self.selectedSegmentIndex
