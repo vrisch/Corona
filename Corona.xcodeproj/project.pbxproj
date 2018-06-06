@@ -25,10 +25,10 @@
 		F70C7F271FAC6DB90000E4C3 /* AppkitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70C7F191FAC6DB10000E4C3 /* AppkitExtensions.swift */; };
 		F70C7F281FAC6DB90000E4C3 /* Corona.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70C7F1A1FAC6DB10000E4C3 /* Corona.swift */; };
 		F70C7F2A1FAC6DB90000E4C3 /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70C7F181FAC6DB10000E4C3 /* UIKitExtensions.swift */; };
-		F7DCF81D2095CA6B00054DB6 /* Internals.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DCF81C2095CA6B00054DB6 /* Internals.swift */; };
-		F7DCF81E2095CA6B00054DB6 /* Internals.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DCF81C2095CA6B00054DB6 /* Internals.swift */; };
-		F7DCF81F2095CA6B00054DB6 /* Internals.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DCF81C2095CA6B00054DB6 /* Internals.swift */; };
-		F7DCF8202095CA6B00054DB6 /* Internals.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DCF81C2095CA6B00054DB6 /* Internals.swift */; };
+		F750130320C7B218000D2131 /* Internals.swift in Sources */ = {isa = PBXBuildFile; fileRef = F750130220C7B217000D2131 /* Internals.swift */; };
+		F750130420C7B218000D2131 /* Internals.swift in Sources */ = {isa = PBXBuildFile; fileRef = F750130220C7B217000D2131 /* Internals.swift */; };
+		F750130520C7B218000D2131 /* Internals.swift in Sources */ = {isa = PBXBuildFile; fileRef = F750130220C7B217000D2131 /* Internals.swift */; };
+		F750130620C7B218000D2131 /* Internals.swift in Sources */ = {isa = PBXBuildFile; fileRef = F750130220C7B217000D2131 /* Internals.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,12 +70,12 @@
 		F70C7F181FAC6DB10000E4C3 /* UIKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIKitExtensions.swift; path = Corona/UIKitExtensions.swift; sourceTree = "<group>"; };
 		F70C7F191FAC6DB10000E4C3 /* AppkitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppkitExtensions.swift; path = Corona/AppkitExtensions.swift; sourceTree = "<group>"; };
 		F70C7F1A1FAC6DB10000E4C3 /* Corona.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Corona.swift; path = Corona/Corona.swift; sourceTree = "<group>"; };
+		F750130220C7B217000D2131 /* Internals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Internals.swift; path = Corona/Internals.swift; sourceTree = "<group>"; };
 		F78F9AC31F57069700B92F5C /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		F78F9AC61F5706B200B92F5C /* Orbit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Orbit.framework; path = Carthage/Build/iOS/Orbit.framework; sourceTree = "<group>"; };
 		F7D02B001F62DDFC0017958D /* Orbit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Orbit.framework; path = Carthage/Build/Mac/Orbit.framework; sourceTree = "<group>"; };
 		F7D02B021F62DE0E0017958D /* Orbit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Orbit.framework; path = Carthage/Build/tvOS/Orbit.framework; sourceTree = "<group>"; };
 		F7D02B041F62DE200017958D /* Orbit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Orbit.framework; path = Carthage/Build/watchOS/Orbit.framework; sourceTree = "<group>"; };
-		F7DCF81C2095CA6B00054DB6 /* Internals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Internals.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,8 +175,8 @@
 			children = (
 				F70C7F191FAC6DB10000E4C3 /* AppkitExtensions.swift */,
 				F70C7F1A1FAC6DB10000E4C3 /* Corona.swift */,
+				F750130220C7B217000D2131 /* Internals.swift */,
 				F70C7F181FAC6DB10000E4C3 /* UIKitExtensions.swift */,
-				F7DCF81C2095CA6B00054DB6 /* Internals.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -499,7 +499,7 @@
 			files = (
 				F70C7F1D1FAC6DB10000E4C3 /* AppkitExtensions.swift in Sources */,
 				F70C7F1C1FAC6DB10000E4C3 /* UIKitExtensions.swift in Sources */,
-				F7DCF81D2095CA6B00054DB6 /* Internals.swift in Sources */,
+				F750130320C7B218000D2131 /* Internals.swift in Sources */,
 				F70C7F1E1FAC6DB10000E4C3 /* Corona.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -518,7 +518,7 @@
 			files = (
 				F70C7F231FAC6DB80000E4C3 /* AppkitExtensions.swift in Sources */,
 				F70C7F261FAC6DB80000E4C3 /* UIKitExtensions.swift in Sources */,
-				F7DCF81F2095CA6B00054DB6 /* Internals.swift in Sources */,
+				F750130520C7B218000D2131 /* Internals.swift in Sources */,
 				F70C7F241FAC6DB80000E4C3 /* Corona.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -529,7 +529,7 @@
 			files = (
 				F70C7F271FAC6DB90000E4C3 /* AppkitExtensions.swift in Sources */,
 				F70C7F2A1FAC6DB90000E4C3 /* UIKitExtensions.swift in Sources */,
-				F7DCF8202095CA6B00054DB6 /* Internals.swift in Sources */,
+				F750130620C7B218000D2131 /* Internals.swift in Sources */,
 				F70C7F281FAC6DB90000E4C3 /* Corona.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -540,7 +540,7 @@
 			files = (
 				F70C7F1F1FAC6DB70000E4C3 /* AppkitExtensions.swift in Sources */,
 				F70C7F221FAC6DB70000E4C3 /* UIKitExtensions.swift in Sources */,
-				F7DCF81E2095CA6B00054DB6 /* Internals.swift in Sources */,
+				F750130420C7B218000D2131 /* Internals.swift in Sources */,
 				F70C7F201FAC6DB70000E4C3 /* Corona.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
