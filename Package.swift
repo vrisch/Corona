@@ -10,7 +10,6 @@ let package = Package(
         ],
     targets: [
         .target(
-            name: "Corona",
-            dependencies: ["Orbit"]),
+            name: "Corona"),
         ]
 )
