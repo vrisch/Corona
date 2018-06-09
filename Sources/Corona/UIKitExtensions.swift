@@ -43,6 +43,23 @@ public extension UIBarButtonItem {
     }
 }
 
+public extension UIRefreshControl {
+    
+    public func bind() -> Corona.Event {
+        return Corona.Event { kind, action in
+            return [
+                TargetAction(target: self, perform: {
+                    try action(.empty)
+                }, add: { targetAction in
+                    self.addTarget(targetAction, action: #selector(TargetAction.action(_:)), for: kind.controlEvents!)
+                }, remove: { targetAction in
+                    self.removeTarget(targetAction, action: #selector(TargetAction.action(_:)), for: kind.controlEvents!)
+                })
+            ]
+        }
+    }
+}
+
 public extension UIButton {
     
     public func bind() -> Corona.Event {
