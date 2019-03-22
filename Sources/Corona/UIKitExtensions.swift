@@ -10,7 +10,7 @@
 import UIKit
 
 fileprivate extension Event.Kind {
-    var controlEvents: UIControlEvents? {
+    var controlEvents: UIControl.Event? {
         switch self {
         case .editingChanged: return .editingChanged
         case .editingDidEndOnExit: return .editingDidEndOnExit
@@ -26,7 +26,7 @@ fileprivate extension Event.Kind {
 
 public extension UIBarButtonItem {
     
-    public func bind() -> Event {
+    func bind() -> Event {
         return Event { kind, action in
             return [
                 TargetAction(target: self, perform: {
@@ -45,7 +45,7 @@ public extension UIBarButtonItem {
 
 public extension UIRefreshControl {
     
-    public func bind() -> Corona.Event {
+    func bind() -> Corona.Event {
         return Corona.Event { kind, action in
             return [
                 TargetAction(target: self, perform: {
@@ -62,7 +62,7 @@ public extension UIRefreshControl {
 
 public extension UIButton {
     
-    public func bind() -> Corona.Event {
+    func bind() -> Corona.Event {
         return Corona.Event { kind, action in
             return [
                 TargetAction(target: self, perform: {
@@ -79,7 +79,7 @@ public extension UIButton {
 
 public extension UITextField {
     
-    public func bind() -> Corona.Event {
+    func bind() -> Corona.Event {
         return Corona.Event { kind, action in
             return [
                 TargetAction(target: self, perform: {
@@ -108,7 +108,7 @@ public extension UITextField {
 
 public extension UISegmentedControl {
     
-    public func bind() -> Corona.Event {
+    func bind() -> Corona.Event {
         return Corona.Event { kind, action in
             return [
                 TargetAction(target: self, perform: {
@@ -129,7 +129,7 @@ public extension UISegmentedControl {
 
 public extension UITextView {
     
-    public func bind() -> Event {
+    func bind() -> Event {
         return Event { kind, action in
             return [
                 TextViewDelegate(target: self, perform: { kind2 in

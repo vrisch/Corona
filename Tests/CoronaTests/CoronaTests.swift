@@ -11,32 +11,4 @@ import XCTest
 import Corona
 
 class CoronaTests: XCTestCase {
-    #if os(OSX)
-    func testNSToolbarItem() {
-        let test = NSToolbarItem()
-        var disposables: [Any] = []
-        disposables += Binder.bind(.toolbarItem(test)) { _ in
-        }
-    }
-    #endif
-    
-    #if os(iOS)
-    func testUIButton() {
-        var test = 0
-        var disposables: [Any] = []
-        let button = UIButton()
-        disposables += try! button.plume().primaryActionTriggered {
-            test = 1
-        }
-        disposables += try! Binder.bind(.control(button)).primaryActionTriggered {
-            test = 1
-        }
-        disposables += try! Binder.bind(.control(button)).valueChanged { _ in
-            test = 2
-        }
-        button.sendActions(for: .touchUpInside)
-        XCTAssertEqual(test, 1)
-        disposables.removeAll()
-    }
-    #endif
 }
